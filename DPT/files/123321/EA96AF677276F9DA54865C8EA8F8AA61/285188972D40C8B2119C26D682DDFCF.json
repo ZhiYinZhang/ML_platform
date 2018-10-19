@@ -1,0 +1,36 @@
+{
+	"data": 
+      { 
+	    "expId": "EA96AF677276F9DA54865C8EA8F8AA61"
+	  }, 
+	"headers": 
+	  {
+	    "code": 0,
+		"expId": "EA96AF677276F9DA54865C8EA8F8AA61",
+		"identifier": "exp_execute_all",
+		"msg": "",
+		"sessionId": "285188972D40C8B2119C26D682DDFCF",
+		"userId": "123321"
+	  },
+	"process": 
+	  [
+	    {
+		  "inputDatasets" :[],
+		  "outputDatasets" :["model08_train.csv"],
+		  "action" : "dataset",
+		  "filePath" : "e:/pythonProject/words.csv",
+		  "fileFormat" : "csv",
+		  "end_execute_node" : "1"
+		},
+	    {
+		  "inputDatasets": ["model08_train.csv"],
+		  "outputDatasets": ["split_01_Output_01","split_01_Output_02"],
+		  "action": "split",
+		  "weight":[0.7,0.3],
+		  "outLeft":"split_01_Output_01",
+		  "outRight":"split_01_Output_02",
+		  "IDColName" : "index"
+		}
+	  ], 
+	"outElem": ["split_01_Output_01","split_01_Output_02"]
+}

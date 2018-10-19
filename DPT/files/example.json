@@ -1,0 +1,75 @@
+{
+	"data": 
+      { 
+	    "expId": "EA96AF677276F9DA54865C8EA8F8AA61"
+	  }, 
+	"headers": 
+	  {
+	    "code": 0,
+		"expId": "EA96AF677276F9DA54865C8EA8F8AA61",
+		"identifier": "exp_execute_all",
+		"msg": "",
+		"sessionId": "285188972D40C8B2119C26D682DDFCF",
+		"userId": "123321"
+	  },
+	"process":
+  [
+    {
+      "inputDatasets":[0],
+      "outputDatasets":[1],
+      "action":"readHdfs",
+      "filePath":"E:/pythonProject/DPT/files/sample_libsvm_data.txt",
+      "fileFormat":"csv",
+	  "inferSchema":"true"
+    },
+    {
+      "inputDatasets":[1],
+      "outputDatasets":[2],
+      "action":"stringIndex",
+      "inputDatasetsCol":"label",
+      "outputDatasetsCol":"indexedLabel"
+    },
+    {
+      "inputDatasets":[2],
+      "outputDatasets":[3],
+      "action":"vectorIndex",
+      "inputDatasetsCol":"features",
+      "outputDatasetsCol":"indexedFeatures",
+      "maxCategories":4
+    },
+    {
+      "inputDatasets":[3],
+      "outputDatasets":[4,5],
+      "action":"split",
+      "weight":[0.7, 0.3],
+      "outLeft":4,
+      "outRight":5
+    },
+    {
+      "inputDatasets":[4],
+      "outputDatasets":[6],
+      "action":"train",
+      "model_name": "GBDT",
+      "labelCol":"indexedLabel",
+      "featuresCol":"indexedFeatures",
+      "maxIter":10
+    },
+    {
+      "inputDatasets":[5,6],
+      "outputDatasets":[7],
+      "action":"predict",
+      "model":6,
+      "testSet":5
+    },
+    {
+      "inputDatasets":[7],
+      "outputDatasets":[8],
+      "action":"evaluate",
+      "labelCol":"indexedLabel",
+      "predictionCol":"prediction",
+      "metricName":"accuracy"
+    }
+  ],
+  "outElem": [8]
+}
+
