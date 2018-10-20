@@ -1,0 +1,119 @@
+{
+    "data": {
+        "expId": "E3204CA4A11B1F72E3768CC314190150"
+    },
+    "headers": {
+        "code": 0,
+        "expId": "E3204CA4A11B1F72E3768CC314190150",
+        "identifier": "exp_execute_all",
+        "msg": "",
+        "sessionId": "737592BFDA77CA7C55F3C7BE65655D4C",
+        "userId": "21C5BCE840B3AE9170C5A69EF62B40E9"
+    },
+    "process": [
+        {
+            "instanceId": "EA9F23013D2CB07B654AD0C3124ED02C",
+            "instanceType": 1,
+            "action": "dataset",
+            "inputDatasets": [
+                
+            ],
+            "outputDatasets": [
+                "model02_train.csv"
+            ]
+        },
+        {
+            "defaultStringVal": "",
+            "instanceId": "AE4900894837DC43D10FAF71C3166235",
+            "selectedColtoString": [
+                
+            ],
+            "defaultIntVal": 0,
+            "instanceType": 2,
+            "defaultDoubleVal": 0,
+            "selectedColtoInt": [
+                
+            ],
+            "action": "typetransform",
+            "selectedColtoDouble": [
+                
+            ],
+            "inputDatasets": [
+                "model02_train.csv"
+            ],
+            "outputDatasets": [
+                "typetransform_1_Output_1"
+            ]
+        },
+        {
+            "instanceId": "6CB5A85960D128C4637458F9F75D5031",
+            "withReplacement": false,
+            "instanceType": 2,
+            "action": "sampling",
+            "inputDatasets": [
+                "typetransform_1_Output_1"
+            ],
+            "outputDatasets": [
+                "sampling_1_Output_1"
+            ],
+            "fraction": 0.1
+        },
+        {
+            "labelColName": [
+                
+            ],
+            "numTrees": 10,
+            "impurity": "gini",
+            "seed": 0,
+            "instanceType": 2,
+            "minInfoGain": 0.0,
+            "outputDatasets": [
+                "RF_model_1_Output_1"
+            ],
+            "featureColNames": [
+                
+            ],
+            "maxDepth": 5,
+            "subsamplingRate": 1.0,
+            "minInstancePerNode": 1,
+            "instanceId": "3184E5DD2AF5C4C7F8512584516FD7AD",
+            "maxBins": 32,
+            "action": "train",
+            "inputDatasets": [
+                "sampling_1_Output_1"
+            ],
+            "model_name": "RF_model"
+        },
+        {
+            "instanceId": "9884D7D98CD9AC283ACFAD16E5284782",
+            "withReplacement": false,
+            "instanceType": 2,
+            "action": "sampling",
+            "inputDatasets": [
+                "typetransform_1_Output_1"
+            ],
+            "outputDatasets": [
+                "sampling_2_Output_1"
+            ],
+            "fraction": 0.1
+        },
+        {
+            "instanceId": "685A029BF377F633586CC14F38697FEE",
+            "instanceType": 2,
+            "action": "predict",
+            "inputDatasets": [
+                "RF_model_1_Output_1",
+                "sampling_2_Output_1"
+            ],
+            "outputDatasets": [
+                "predict_1_Output_1"
+            ],
+            "featureColNames": [
+                
+            ]
+        }
+    ],
+    "outElem": [
+        "predict_1_Output_1"
+    ]
+}
