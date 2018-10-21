@@ -49,9 +49,9 @@ def callback(ch, method, properties, body):
             session_id = res["headers"]["sessionId"]
             experiment_id = res["headers"]["expId"]
             user_id = res["headers"]["userId"]
-            if user_id=="":
+            if user_id == "":
                   user_id=f"Tourist_{experiment_id}"
-
+                  res["headers"]["userId"] = user_id
             dir_path = os.path.join("files/", user_id, experiment_id)
 
             # 如果work文件夹不存在，创建work文件夹

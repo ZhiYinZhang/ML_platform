@@ -14,6 +14,11 @@ def Get_dataset_info(data_args):
     headers = data_args['headers']
     user_id = headers['userId']
     experiment_id = headers['expId']
+
+    if user_id == "":
+        user_id = f"Tourist_{experiment_id}"
+    headers['userId'] = user_id
+
     #获取要读取的数据集名称
     output = data_args['process'][0]['outputDatasets'][0]
     if output.endswith('.csv') and output.startswith('model'):
@@ -21,7 +26,7 @@ def Get_dataset_info(data_args):
         file = f"dataset/{output}"
     else:
         #中间文件
-        file = f"temp/{user_id}/{experiment_id}/{output}.json"
+        file = f"temp/{user_id}/{experiment_id}/{output}"
     data_args['file_path'] = file
 
     if cli.status(hdfs_path=file,strict=False):

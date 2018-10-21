@@ -15,4 +15,4 @@ class ReaderBase(OperationBase):
     def __init__(self, data: dict, elem_dict: dict, spark):
         super().__init__(data, elem_dict, spark)
         self.file_path = self.args["filePath"]
-        self.file_format = self.get_arg("fileFormat","csv")
+        self.file_format = self.get_arg("fileFormat","parquet")
