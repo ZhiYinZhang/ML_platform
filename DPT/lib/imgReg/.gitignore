@@ -1,8 +1,0 @@
-.idea/*
-*.pt
-data/train/*
-data/val/*
-.ipy*
-*.ipynb
-*.pyc
-entrobus/__pycache__/*
