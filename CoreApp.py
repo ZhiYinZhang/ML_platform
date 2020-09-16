@@ -36,6 +36,7 @@ def test():
 
     workflow = data_args["process"]
     # 元素名与实际对象的映射
+    # outputDataset名称与dataframe对象的映射 
     name_operation = {}
 
     flag = True
